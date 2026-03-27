@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 98%;
+    --foreground: 215 30% 18%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 30% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 30% 18%;
+
+    --primary: 211 85% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 95% 55%;
+    --secondary-foreground: 215 30% 18%;
+
+    --muted: 210 30% 95%;
+    --muted-foreground: 215 15% 50%;
+
+    --accent: 200 60% 94%;
+    --accent-foreground: 211 85% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 25% 90%;
+    --input: 210 25% 90%;
+    --ring: 211 85% 50%;
+
+    --radius: 1rem;
+
+    /* Custom tokens */
+    --baby-blue: 200 70% 95%;
+    --baby-cream: 40 40% 97%;
+    --highlight: 45 95% 55%;
+    --highlight-foreground: 215 30% 18%;
+    --surface-warm: 40 30% 97%;
+
+    --font-display: 'Nunito', sans-serif;
+    --font-body: 'Quicksand', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(211 85% 60%));
+  }
+
+  .bg-baby-pattern {
+    background-image: radial-gradient(circle at 20% 50%, hsl(var(--baby-blue) / 0.5) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, hsl(var(--highlight) / 0.1) 0%, transparent 40%),
+                       radial-gradient(circle at 60% 80%, hsl(var(--baby-blue) / 0.3) 0%, transparent 50%);
+  }
+
+  .wave-divider {
+    position: relative;
+  }
+
+  .wave-divider::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40'%3E%3Cpath fill='%23f8fafc' d='M0,20 C360,40 720,0 1080,20 C1260,30 1350,25 1440,20 L1440,40 L0,40 Z'/%3E%3C/svg%3E") no-repeat center bottom;
+    background-size: cover;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
