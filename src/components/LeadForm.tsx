@@ -124,7 +124,7 @@ const LeadForm = ({ id }: LeadFormProps) => {
       body: JSON.stringify({
         nome: data.nome,
         telefone: data.telefone,
-        documento: data.cnpj,
+        documento: data.cnpj.replace(/\D/g, ""),
         tipoDocumento: "cnpj",
         estado: data.estado,
         ...utms,
