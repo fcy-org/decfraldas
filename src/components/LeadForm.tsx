@@ -5,7 +5,15 @@ import logoImg from "@/assets/Images/Logo.png";
 
 declare function fbq(...args: unknown[]): void;
 
-// ─── CNPJ helpers ────────────────────────────────────────────────────────────
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+function formatarTelefone(value: string): string {
+  const d = value.replace(/\D/g, "").slice(0, 11);
+  if (d.length <= 10) {
+    return d.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{4})(\d)/, "$1-$2");
+  }
+  return d.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
+}
 
 function formatarCNPJ(value: string): string {
   const d = value.replace(/\D/g, "").slice(0, 14);
@@ -78,7 +86,9 @@ const LeadForm = ({ id }: LeadFormProps) => {
   ) => {
     const { name } = e.target;
     const value =
-      name === "cnpj" ? formatarCNPJ(e.target.value) : e.target.value;
+      name === "cnpj" ? formatarCNPJ(e.target.value)
+      : name === "telefone" ? formatarTelefone(e.target.value)
+      : e.target.value;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors((prev) => {
@@ -186,10 +196,11 @@ const LeadForm = ({ id }: LeadFormProps) => {
             <input
               name="telefone"
               type="tel"
-              placeholder="WhatsApp com DDD"
+              placeholder="(00) 00000-0000"
               onChange={handleChange}
+              value={formData.telefone ?? ""}
               required
-              maxLength={20}
+              maxLength={15}
               className={inputBase}
             />
           </div>
